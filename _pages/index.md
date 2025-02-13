@@ -5,4 +5,4 @@ permalink: /
 profile_image: /assets/img/profile.jpg # Add your image path here
 ---
 
-This is the landing page for my site. Here's a quick introduction to me!
+World-renowned poet Ben Warzel breaks records (and hearts) daily. Like it's nothing. Cuz it's nothing. 
