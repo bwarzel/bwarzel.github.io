@@ -1,15 +1,15 @@
 ---
-title: "**Ben's Review**"
+title: *Ben's Review*
 layout: page
 category: "Essay & Presentation"
-date: 2025-02-16
+date: 2025-02-18
 permalink: /project-review/ # The URL for this page
 showcase: false # Set to false to hide from portfolio page
 description: >
   Project review for HIST 4261/5261: Working With Data
 ---
 
-This is my proposal for a project review. It was written on **{{ page.date }}** and falls under the category of: {{ page.category }}. 
+This is my project review. It was written on **{{ page.date }}** and falls under the category of: {{ page.category }}. 
 I would like to analyze the [NYPD crime statistics for 2000-2023](https://www.nyc.gov/site/nypd/stats/crime-statistics/historical.page). They have charts with seven major felonies, non-major felonies, misdemeanors, and violations. 
 
 
