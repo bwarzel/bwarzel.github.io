@@ -1,5 +1,5 @@
 ---
-title: *"Ben's Review"*
+title: Ben's Review
 layout: page
 category: "Essay & Presentation"
 date: 2025-02-18
