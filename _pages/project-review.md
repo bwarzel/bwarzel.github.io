@@ -15,7 +15,7 @@ I would like to analyze the [NYPD crime statistics for 2000-2023](https://www.ny
 
 
 
-##ARGUMNT / INTERPRETATION- what is their interpretative point of view? How effectively is it communicated? 
+##ARGUMENT / INTERPRETATION- what is their interpretative point of view? How effectively is it communicated? 
 Since it is an official government website, they attempt to remain impartial in the written aspects of the page. Implicitly, however, it is obvious that crime overall has decreased in the city by about 20,000 instances across all four categories. Something helpful that adds context are the footnotes which detail the kinds of specific crimes that fall under the more broad categories in the tables; for example “Frauds” contains mostly Criminal Impersonation and Identity Theft offenses. This makes the crimes feel more real, as they are common examples that people can picture easily. It also allows us to see areas of questionable data, like including marijuana possession in the same category as Heroin or other much more dangerous substances. There are highlighted rows with the explanation that they “represent categories where a substantial portion of the complaint counts are generated as a result of the implementation of pro-active policing strategies” which seems to imply that the rest of the categories are not crimes that police actively seek out. It is also completely unclear when the ‘implementation’ began and overall unclear what point is supposedly being made by highlighting the rows.
 
 ##DATA / EVIDENCE- What is the underlying dataset? How well do the project’s authors use that data? How does that data fit with other kinds of evidence?
