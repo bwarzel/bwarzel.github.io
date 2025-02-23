@@ -17,7 +17,7 @@ I would like to analyze the [NYPD crime statistics for 2000-2023](https://www.ny
 
 ##ARGUMENT / INTERPRETATION- what is their interpretative point of view? How effectively is it communicated? 
 
-Since it is an official government website, they attempt to remain impartial in the written aspects of the page. Implicitly, however, it is obvious that crime overall has decreased in the city by about 20,000 instances across all four categories. Something helpful that adds context are the footnotes which detail the kinds of specific crimes that fall under the more broad categories in the tables; for example “Frauds” contains mostly Criminal Impersonation and Identity Theft offenses. This makes the crimes feel more real, as they are common examples that people can picture easily. It also allows us to see areas of questionable data, like including marijuana possession in the same category as Heroin or other much more dangerous substances. There are highlighted rows with the explanation that they “represent categories where a substantial portion of the complaint counts are generated as a result of the implementation of pro-active policing strategies” which seems to imply that the rest of the categories are not crimes that police actively seek out. It is also completely unclear when the ‘implementation’ began and overall unclear what point is supposedly being made by highlighting the rows.
+Since it is an official government website, they attempt to remain impartial in the written aspects of the page. Implicitly, however, it is obvious that crime overall has decreased in the city by about 20,000 instances across all four categories. Something helpful that adds context are the footnotes which detail the kinds of specific crimes that fall under the more broad categories in the tables; for example “Frauds” contains mostly Criminal Impersonation and Identity Theft offenses. This makes the crimes feel more real, as they are common examples that people can picture easily. It also allows us to see areas of questionable data, like including marijuana possession in the same category as Heroin or other much more dangerous substances. There are highlighted rows with the explanation that they “represent categories where a substantial portion of the complaint counts are generated as a result of the implementation of pro-active policing strategies” which seems to imply that the rest of the categories are not crimes that police actively seek out. It is also completely unclear when the ‘implementation’ began and overall unclear what point is supposedly being made by highlighting the rows. NOTE: These green rows were deleted from the site, however I was able to use the Wayback Machine to visit an archived version of the site with the green highlights still in place. This has been provided at the bottom of this page. 
 
 ##DATA / EVIDENCE- What is the underlying dataset? How well do the project’s authors use that data? How does that data fit with other kinds of evidence?
 
@@ -34,4 +34,8 @@ There is not much of an argument, but the evidence is communicated fairly well, 
 
 <div align="center">
   <p><img src="/assets/img/nypdcrime.png" style="width: 80%;" /></p>
+</div>
+
+<div align="center">
+  <p><img src="/assets/img/nypdgreen.png" style="width: 80%;" /></p>
 </div>
