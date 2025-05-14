@@ -1,13 +1,3 @@
----
-layout: notebook
-title: "Ben Warzel's Research Project"
-permalink: /research-project/
-showcase: true
-tools: ["Python"]
-date: 2025-03-19
-description: >
-  Final project
----
 <!DOCTYPE html>
 
 <html lang="en">
@@ -7526,7 +7516,7 @@ a.anchor-link {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h1 id="Consumer-Expenditure-Trends-2006-2020">Consumer Expenditure Trends 2006-2020<a class="anchor-link" href="#Consumer-Expenditure-Trends-2006-2020">¶</a></h1><h2 id="Ben-Warzel">Ben Warzel<a class="anchor-link" href="#Ben-Warzel">¶</a></h2><h3 id="5/8/2025">5/8/2025<a class="anchor-link" href="#5/8/2025">¶</a></h3>
+<h1 id="Consumer-Expenditure-Trends-2006-2020">Consumer Expenditure Trends 2006-2020<a class="anchor-link" href="#Consumer-Expenditure-Trends-2006-2020">¶</a></h1><h2 id="Ben-Warzel">Ben Warzel<a class="anchor-link" href="#Ben-Warzel">¶</a></h2><h3 id="5/15/2025">5/15/2025<a class="anchor-link" href="#5/15/2025">¶</a></h3>
 </div>
 </div>
 </div>
@@ -7548,9 +7538,10 @@ a.anchor-link {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h3 id="Introduction">Introduction<a class="anchor-link" href="#Introduction">¶</a></h3><p>I chose this particular set of consumer expenditure data because it covers the majority of my childhood and adolescence, and I was curious to see the impacts of events like the 2008 housing crisis on the average American's spending habits. The rise and prevalence of credit cards into the 2010s is something else that might affect how people spend.</p>
-<p>According to the Bureau of Labor Statistics, by 2005 consumers were spending 97% of their income. During the Great Recession, that number dropped to 92% due to higher mortage debt and lower home equity. People had to try to save more of their money, which we can see thanks to this graph of St Louis household savings over the years. The BLS also has data on employment statistics for the same time period, which we will examine later.</p>
-<p>The main categories I examined here are Housing, Healthcare, Food, and Transportation. I also attempt to answer questions about extraneous spending; how the consumption of alcohol and tobacco changes over time for example, or the section labeled "Entertainment" which includes things like going to the movies or concerts. We would assume that as the housing market struggled, people began spending less on non-essential items.</p>
+<h3 id="Introduction">Introduction<a class="anchor-link" href="#Introduction">¶</a></h3><p>The period of 2007-2010 in American Economics is referred to as the 'Great Recession'. Following a collapse of the American housing 'bubble' or ideal economic balance in the housing market, and a crisis caused by banks giving too many loans to too many people, the general household wealth and value fell dramatically.</p>
+<p>According to the Bureau of Labor Statistics, by 2005 consumers were spending 97% of their income. During the Great Recession, that number dropped to 92% due to higher mortage debt and lower home equity. People had to try to save more of their money, and the credit available to them shrank [2010 IMF Report]. The BLS also has data on employment statistics for the same time period, which we will examine later, but essentially all areas of employment saw a decrease in the workforce after the Great Recession.</p>
+<p>I chose this particular set of consumer expenditure data because it covers the majority of my childhood and adolescence, and I was curious to see the impacts of events like the 2008 housing crisis on the average American's spending habits. The rise and prevalence of credit cards into the 2010s is something else that might affect how people spend, although the credit limits were not as high then as they are now.</p>
+<p>The main categories I chose to focus on here are Housing, Healthcare, Food, and Transportation. I also attempt to answer questions about extraneous spending; how the consumption of alcohol and tobacco changes over time for example, or the section labeled "Entertainment" which includes things like going to movies or concerts. We would assume that as the housing market struggled, people began spending less on non-essential items. Generally we can see this pattern represented in the data and charts, but there is another expenditure that rises sharply in the late 2010s and into the 2020s: Education. This is another area of spending that lends itself to a growing Savings account; as most households will be saving to send their children to college if they are not still paying off their own student loans.</p>
 </div>
 </div>
 </div>
@@ -7561,7 +7552,87 @@ a.anchor-link {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h3 id="Methods">Methods<a class="anchor-link" href="#Methods">¶</a></h3><p>The original datasets were obtained from the BLS website, where I was able to download documents containing detailed line-by-line breakdowns of spending by year. I chose to select only the documents containing information from 2006-2012 and 2013-2020. These sheets were loosely formatted with a larger section ("Food") contianing some amount of rows beneath it with more specific items like "Meat", which could also contain subsets like "Pork". I decided that for my purposes I was not interested in the particulars of the spending, just the bigger picture. Because of this my first step was to clean the datasets to contain only the most important information. To do this, I first manually edited the sheets to remove non-monetary data. This included things like "Average number in consumer unit" (meaning household size) or the percent distribution of various demographic information of the reference individual. This information may be interesting but it will not serve a dataset that we want to manipulate in Python. After doing this, I took my version of the dataset and began working with Claude AI to further clean and organize the data. I instructed it to look for the Items at the beginning of a row break, as each main section is separated this way, and only include that first term. This worked really well and I was left with the categories:</p>
+<h3 id="Methods">Methods<a class="anchor-link" href="#Methods">¶</a></h3><p>The original datasets were obtained from the BLS website, where I was able to download documents containing detailed line-by-line breakdowns of spending by year. These data sets were made up of information collected from voluntary Interview Surveys detailing larger expenditures and Diary Surveys which kept track of smaller weekly spending. There is demographic information provided as well, in the form of "Percent Distribution" (or relative total frequency out of 100) for gender and race. I believe this is an attempt to provide further context for the data, but the demographics end up being mainly White men and women.</p>
+<p>I chose to select only the documents containing information from 2006-2012 and 2013-2020. These sheets were loosely formatted with a larger section ("Food") contianing some amount of rows beneath it with more specific items like "Meat", which could also contain subsets like "Pork".</p>
+<div align="center">
+<img alt="Raw sample of expenditure sheet" src="../assets/img/sampleraw.png" style="border: 2px solid" width="60%"/>
+<figcaption style="font-style: italic">
+    Unrefined dataset.
+  </figcaption>
+</div>
+<p>I decided that for my purposes I was not interested in the particulars of the spending, just the bigger picture. Because of this my first step was to clean the datasets to contain only the most important information. To do this, I first manually edited the sheets to remove non-monetary data. This included things like "Average number in consumer unit" (meaning household size) or the Percent Distribution of the demographic information of the reference individual. This information may be interesting but it will not serve a dataset that we want to manipulate and chart in Python. After doing this, I took my version of the dataset and began working with Claude AI to further clean and organize the data. I instructed it to look for the Items at the beginning of a row break, as each main section is separated this way, and only include that first term.</p>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=1be16adc-3555-4b88-940f-6c1c2bd0f248">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [37]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="c1"># Function to process the data and group by categories</span>
+<span class="k">def</span> <span class="nf">process_consumer_spending</span><span class="p">(</span><span class="n">df</span><span class="p">):</span>
+    <span class="c1"># Forward fill NaN values in first column to identify categories</span>
+    <span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="s1">''</span><span class="p">)</span>
+    
+    <span class="c1"># Initialize variables</span>
+    <span class="n">categories</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">current_category</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">grouped_data</span> <span class="o">=</span> <span class="p">[]</span>
+    
+    <span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">iterrows</span><span class="p">():</span>
+        <span class="n">item</span> <span class="o">=</span> <span class="n">row</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        
+        <span class="c1"># Skip completely empty rows</span>
+        <span class="k">if</span> <span class="n">item</span> <span class="o">==</span> <span class="s1">''</span><span class="p">:</span>
+            <span class="n">current_category</span> <span class="o">=</span> <span class="kc">None</span>
+            <span class="k">continue</span>
+        
+        <span class="c1"># Check if this is a main category (no indentation and not a subcategory)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">item</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">' '</span><span class="p">)</span> <span class="ow">and</span> <span class="s1">','</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">item</span> <span class="ow">and</span> <span class="s1">':'</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">item</span><span class="p">:</span>
+            <span class="c1"># We found a new main category</span>
+            <span class="n">current_category</span> <span class="o">=</span> <span class="n">item</span>
+            <span class="k">if</span> <span class="n">current_category</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">categories</span><span class="p">:</span>
+                <span class="n">categories</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">current_category</span><span class="p">)</span>
+        
+        <span class="c1"># Create a row with category information</span>
+        <span class="n">new_row</span> <span class="o">=</span> <span class="n">row</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">current_category</span><span class="p">:</span>
+            <span class="n">new_row</span><span class="p">[</span><span class="s1">'Category'</span><span class="p">]</span> <span class="o">=</span> <span class="n">current_category</span>
+            <span class="n">grouped_data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">new_row</span><span class="p">)</span>
+    
+    <span class="c1"># Convert to DataFrame</span>
+    <span class="n">result_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">grouped_data</span><span class="p">)</span>
+    
+    <span class="c1"># Clean up the monetary values</span>
+    <span class="k">for</span> <span class="n">year</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2006</span><span class="p">,</span> <span class="mi">2013</span><span class="p">):</span>
+        <span class="n">year_col</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">year</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">year_col</span> <span class="ow">in</span> <span class="n">result_df</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
+            <span class="n">result_df</span><span class="p">[</span><span class="n">year_col</span><span class="p">]</span> <span class="o">=</span> <span class="n">result_df</span><span class="p">[</span><span class="n">year_col</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> 
+                <span class="n">pd</span><span class="o">.</span><span class="n">to_numeric</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">'$'</span><span class="p">,</span> <span class="s1">''</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">','</span><span class="p">,</span> <span class="s1">''</span><span class="p">),</span> <span class="n">errors</span><span class="o">=</span><span class="s1">'coerce'</span><span class="p">)</span>
+                <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span> <span class="k">else</span> <span class="n">x</span><span class="p">)</span>
+    
+    <span class="c1"># Rename columns for clarity</span>
+    <span class="n">result_df</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="n">result_df</span><span class="o">.</span><span class="n">columns</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span> <span class="s1">'Item'</span><span class="p">},</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    
+    <span class="k">return</span> <span class="n">result_df</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=aad3c4c6-63ed-4e3e-9706-bf5cc0ed8ff9">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p>This worked really well and I was left with the categories:</p>
 <p>1	Average Annual Expenditures</p>
 <p>2	Food</p>
 <p>3	Alcoholic beverages</p>
@@ -7588,7 +7659,294 @@ a.anchor-link {
 <p>24	Personal taxes (contains some imputed values)</p>
 <p>25	Income after taxes</p>
 <p>A few of these items have no data associated with them, but as far as I could tell it did not affect the computation of the results, so I decided I was okay with keeping some blank rows.</p>
-<p>After doing this for both sets of data and double checking to make sure all the categories lined up, I used Python to merge the two cleaned csv files. Next, in order to make the dataframe a bit more readable for Python, I used the command '.long' to transform the dataframe into a "long" format as opposed to a "wide" one; meaning each item for each year is given its own row, as oppposed to four columns of years by the amount of items. Somehow this also removed the rows with no value, which was a wonderful bonus. Then I began exploring the data and looking for trends, as well as using Claude to help me examine individual items or specific areas.</p>
+<p>After doing this for both sets of data and double checking to make sure all the categories lined up, I used Python to merge the two cleaned csv files.</p>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=7ec4c6d8-e916-4fbe-8264-8c6db8ab8b45">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [39]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># Function to read and clean the CSV files</span>
+<span class="k">def</span> <span class="nf">read_and_clean_csv</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
+    <span class="c1"># Read the CSV file</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
+    
+    <span class="c1"># Clean column names by stripping quotes and whitespace</span>
+    <span class="n">df</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="s1">'"'</span><span class="p">)</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+    
+    <span class="c1"># For the first column, remove quotation marks and whitespace</span>
+    <span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="s1">'"'</span><span class="p">)</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span> <span class="k">if</span> <span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">dtype</span> <span class="o">==</span> <span class="s1">'object'</span> <span class="k">else</span> <span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span>
+    
+    <span class="k">return</span> <span class="n">df</span>
+
+<span class="c1"># Function to extract main categories</span>
+<span class="k">def</span> <span class="nf">extract_main_categories</span><span class="p">(</span><span class="n">df</span><span class="p">):</span>
+    <span class="c1"># Identify main categories by finding rows that come right after blank rows</span>
+    <span class="c1"># First, identify blank rows (rows where the first column is empty or NaN)</span>
+    <span class="n">blank_rows</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">isna</span><span class="p">()</span> <span class="o">|</span> <span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s1">''</span><span class="p">)</span>
+    
+    <span class="c1"># Find rows that come right after blank rows</span>
+    <span class="n">main_category_indices</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">blank_rows</span><span class="p">)):</span>
+        <span class="k">if</span> <span class="n">blank_rows</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">blank_rows</span><span class="p">[</span><span class="n">i</span><span class="p">]:</span>
+            <span class="n">main_category_indices</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+    
+    <span class="c1"># Also include the first row (which contains "Average Annual Expenditure")</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">blank_rows</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span>
+        <span class="n">main_category_indices</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+    
+    <span class="c1"># Extract main categories and their data</span>
+    <span class="n">main_categories_df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">main_category_indices</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+    
+    <span class="k">return</span> <span class="n">main_categories_df</span>
+
+<span class="c1"># Read and clean the CSV files</span>
+<span class="n">df1</span> <span class="o">=</span> <span class="n">read_and_clean_csv</span><span class="p">(</span><span class="s1">'../data/original/consumer06csv.csv'</span><span class="p">)</span>
+<span class="n">df2</span> <span class="o">=</span> <span class="n">read_and_clean_csv</span><span class="p">(</span><span class="s1">'../data/original/consumer13csv.csv'</span><span class="p">)</span>
+
+<span class="c1"># Extract main categories from each file</span>
+<span class="n">main_categories_df1</span> <span class="o">=</span> <span class="n">extract_main_categories</span><span class="p">(</span><span class="n">df1</span><span class="p">)</span>
+<span class="n">main_categories_df2</span> <span class="o">=</span> <span class="n">extract_main_categories</span><span class="p">(</span><span class="n">df2</span><span class="p">)</span>
+
+<span class="c1"># Convert dollar values to numeric, removing $ and commas</span>
+<span class="k">def</span> <span class="nf">clean_dollar_values</span><span class="p">(</span><span class="n">df</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">[</span><span class="mi">1</span><span class="p">:]:</span>  <span class="c1"># Skip the first column (Item)</span>
+        <span class="k">if</span> <span class="n">df</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">dtype</span> <span class="o">==</span> <span class="s1">'object'</span><span class="p">:</span>
+            <span class="n">df</span><span class="p">[</span><span class="n">col</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">'$'</span><span class="p">,</span> <span class="s1">''</span><span class="p">,</span> <span class="n">regex</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+            <span class="n">df</span><span class="p">[</span><span class="n">col</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">','</span><span class="p">,</span> <span class="s1">''</span><span class="p">,</span> <span class="n">regex</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+            <span class="n">df</span><span class="p">[</span><span class="n">col</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_numeric</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">col</span><span class="p">],</span> <span class="n">errors</span><span class="o">=</span><span class="s1">'coerce'</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">df</span>
+
+<span class="n">main_categories_df1</span> <span class="o">=</span> <span class="n">clean_dollar_values</span><span class="p">(</span><span class="n">main_categories_df1</span><span class="p">)</span>
+<span class="n">main_categories_df2</span> <span class="o">=</span> <span class="n">clean_dollar_values</span><span class="p">(</span><span class="n">main_categories_df2</span><span class="p">)</span>
+
+<span class="c1"># Combine the two dataframes</span>
+<span class="c1"># First, prepare the dataframes by setting the 'Item' column as index</span>
+<span class="n">main_categories_df1</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">'Item'</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">main_categories_df2</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">'Item'</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># Now combine them</span>
+<span class="n">combined_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">main_categories_df1</span><span class="p">,</span> <span class="n">main_categories_df2</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># Reset index to make 'Item' a column again</span>
+<span class="n">combined_df</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># Display the combined dataframe</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Combined data for main spending categories (2006-2020):"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">combined_df</span><span class="p">)</span>
+
+<span class="c1"># Save the combined data to a new CSV file</span>
+<span class="n">combined_df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">'combined_consumer_spending_2006_2020.csv'</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">Data saved to 'combined_consumer_spending_2006_2020.csv'"</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr" tabindex="0">
+<pre>
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">FileNotFoundError</span>                         Traceback (most recent call last)
+Cell <span class="ansi-green-fg">In[39], line 36</span>
+<span class="ansi-green-intense-fg ansi-bold">     33</span>     <span class="ansi-bold" style="color: rgb(0,135,0)">return</span> main_categories_df
+<span class="ansi-green-intense-fg ansi-bold">     35</span> <span style="color: rgb(95,135,135)"># Read and clean the CSV files</span>
+<span class="ansi-green-fg">---&gt; 36</span> df1 <span style="color: rgb(98,98,98)">=</span> read_and_clean_csv(<span style="color: rgb(175,0,0)">'</span><span style="color: rgb(175,0,0)">../data/original/consumer06csv.csv</span><span style="color: rgb(175,0,0)">'</span>)
+<span class="ansi-green-intense-fg ansi-bold">     37</span> df2 <span style="color: rgb(98,98,98)">=</span> read_and_clean_csv(<span style="color: rgb(175,0,0)">'</span><span style="color: rgb(175,0,0)">../data/original/consumer13csv.csv</span><span style="color: rgb(175,0,0)">'</span>)
+<span class="ansi-green-intense-fg ansi-bold">     39</span> <span style="color: rgb(95,135,135)"># Extract main categories from each file</span>
+
+Cell <span class="ansi-green-fg">In[39], line 4</span>, in <span class="ansi-cyan-fg">read_and_clean_csv</span><span class="ansi-blue-fg">(filename)</span>
+<span class="ansi-green-intense-fg ansi-bold">      2</span> <span class="ansi-bold" style="color: rgb(0,135,0)">def</span> <span style="color: rgb(0,0,255)">read_and_clean_csv</span>(filename):
+<span class="ansi-green-intense-fg ansi-bold">      3</span>     <span style="color: rgb(95,135,135)"># Read the CSV file</span>
+<span class="ansi-green-fg">----&gt; 4</span>     df <span style="color: rgb(98,98,98)">=</span> pd<span style="color: rgb(98,98,98)">.</span>read_csv(filename)
+<span class="ansi-green-intense-fg ansi-bold">      6</span>     <span style="color: rgb(95,135,135)"># Clean column names by stripping quotes and whitespace</span>
+<span class="ansi-green-intense-fg ansi-bold">      7</span>     df<span style="color: rgb(98,98,98)">.</span>columns <span style="color: rgb(98,98,98)">=</span> df<span style="color: rgb(98,98,98)">.</span>columns<span style="color: rgb(98,98,98)">.</span>str<span style="color: rgb(98,98,98)">.</span>strip(<span style="color: rgb(175,0,0)">'</span><span style="color: rgb(175,0,0)">"</span><span style="color: rgb(175,0,0)">'</span>)<span style="color: rgb(98,98,98)">.</span>str<span style="color: rgb(98,98,98)">.</span>strip()
+
+File <span class="ansi-green-fg">/opt/anaconda3/lib/python3.12/site-packages/pandas/io/parsers/readers.py:1026</span>, in <span class="ansi-cyan-fg">read_csv</span><span class="ansi-blue-fg">(filepath_or_buffer, sep, delimiter, header, names, index_col, usecols, dtype, engine, converters, true_values, false_values, skipinitialspace, skiprows, skipfooter, nrows, na_values, keep_default_na, na_filter, verbose, skip_blank_lines, parse_dates, infer_datetime_format, keep_date_col, date_parser, date_format, dayfirst, cache_dates, iterator, chunksize, compression, thousands, decimal, lineterminator, quotechar, quoting, doublequote, escapechar, comment, encoding, encoding_errors, dialect, on_bad_lines, delim_whitespace, low_memory, memory_map, float_precision, storage_options, dtype_backend)</span>
+<span class="ansi-green-intense-fg ansi-bold">   1013</span> kwds_defaults <span style="color: rgb(98,98,98)">=</span> _refine_defaults_read(
+<span class="ansi-green-intense-fg ansi-bold">   1014</span>     dialect,
+<span class="ansi-green-intense-fg ansi-bold">   1015</span>     delimiter,
+<span class="ansi-green-fg">   (...)</span>
+<span class="ansi-green-intense-fg ansi-bold">   1022</span>     dtype_backend<span style="color: rgb(98,98,98)">=</span>dtype_backend,
+<span class="ansi-green-intense-fg ansi-bold">   1023</span> )
+<span class="ansi-green-intense-fg ansi-bold">   1024</span> kwds<span style="color: rgb(98,98,98)">.</span>update(kwds_defaults)
+<span class="ansi-green-fg">-&gt; 1026</span> <span class="ansi-bold" style="color: rgb(0,135,0)">return</span> _read(filepath_or_buffer, kwds)
+
+File <span class="ansi-green-fg">/opt/anaconda3/lib/python3.12/site-packages/pandas/io/parsers/readers.py:620</span>, in <span class="ansi-cyan-fg">_read</span><span class="ansi-blue-fg">(filepath_or_buffer, kwds)</span>
+<span class="ansi-green-intense-fg ansi-bold">    617</span> _validate_names(kwds<span style="color: rgb(98,98,98)">.</span>get(<span style="color: rgb(175,0,0)">"</span><span style="color: rgb(175,0,0)">names</span><span style="color: rgb(175,0,0)">"</span>, <span class="ansi-bold" style="color: rgb(0,135,0)">None</span>))
+<span class="ansi-green-intense-fg ansi-bold">    619</span> <span style="color: rgb(95,135,135)"># Create the parser.</span>
+<span class="ansi-green-fg">--&gt; 620</span> parser <span style="color: rgb(98,98,98)">=</span> TextFileReader(filepath_or_buffer, <span style="color: rgb(98,98,98)">*</span><span style="color: rgb(98,98,98)">*</span>kwds)
+<span class="ansi-green-intense-fg ansi-bold">    622</span> <span class="ansi-bold" style="color: rgb(0,135,0)">if</span> chunksize <span class="ansi-bold" style="color: rgb(175,0,255)">or</span> iterator:
+<span class="ansi-green-intense-fg ansi-bold">    623</span>     <span class="ansi-bold" style="color: rgb(0,135,0)">return</span> parser
+
+File <span class="ansi-green-fg">/opt/anaconda3/lib/python3.12/site-packages/pandas/io/parsers/readers.py:1620</span>, in <span class="ansi-cyan-fg">TextFileReader.__init__</span><span class="ansi-blue-fg">(self, f, engine, **kwds)</span>
+<span class="ansi-green-intense-fg ansi-bold">   1617</span>     <span style="color: rgb(0,135,0)">self</span><span style="color: rgb(98,98,98)">.</span>options[<span style="color: rgb(175,0,0)">"</span><span style="color: rgb(175,0,0)">has_index_names</span><span style="color: rgb(175,0,0)">"</span>] <span style="color: rgb(98,98,98)">=</span> kwds[<span style="color: rgb(175,0,0)">"</span><span style="color: rgb(175,0,0)">has_index_names</span><span style="color: rgb(175,0,0)">"</span>]
+<span class="ansi-green-intense-fg ansi-bold">   1619</span> <span style="color: rgb(0,135,0)">self</span><span style="color: rgb(98,98,98)">.</span>handles: IOHandles <span style="color: rgb(98,98,98)">|</span> <span class="ansi-bold" style="color: rgb(0,135,0)">None</span> <span style="color: rgb(98,98,98)">=</span> <span class="ansi-bold" style="color: rgb(0,135,0)">None</span>
+<span class="ansi-green-fg">-&gt; 1620</span> <span style="color: rgb(0,135,0)">self</span><span style="color: rgb(98,98,98)">.</span>_engine <span style="color: rgb(98,98,98)">=</span> <span style="color: rgb(0,135,0)">self</span><span style="color: rgb(98,98,98)">.</span>_make_engine(f, <span style="color: rgb(0,135,0)">self</span><span style="color: rgb(98,98,98)">.</span>engine)
+
+File <span class="ansi-green-fg">/opt/anaconda3/lib/python3.12/site-packages/pandas/io/parsers/readers.py:1880</span>, in <span class="ansi-cyan-fg">TextFileReader._make_engine</span><span class="ansi-blue-fg">(self, f, engine)</span>
+<span class="ansi-green-intense-fg ansi-bold">   1878</span>     <span class="ansi-bold" style="color: rgb(0,135,0)">if</span> <span style="color: rgb(175,0,0)">"</span><span style="color: rgb(175,0,0)">b</span><span style="color: rgb(175,0,0)">"</span> <span class="ansi-bold" style="color: rgb(175,0,255)">not</span> <span class="ansi-bold" style="color: rgb(175,0,255)">in</span> mode:
+<span class="ansi-green-intense-fg ansi-bold">   1879</span>         mode <span style="color: rgb(98,98,98)">+</span><span style="color: rgb(98,98,98)">=</span> <span style="color: rgb(175,0,0)">"</span><span style="color: rgb(175,0,0)">b</span><span style="color: rgb(175,0,0)">"</span>
+<span class="ansi-green-fg">-&gt; 1880</span> <span style="color: rgb(0,135,0)">self</span><span style="color: rgb(98,98,98)">.</span>handles <span style="color: rgb(98,98,98)">=</span> get_handle(
+<span class="ansi-green-intense-fg ansi-bold">   1881</span>     f,
+<span class="ansi-green-intense-fg ansi-bold">   1882</span>     mode,
+<span class="ansi-green-intense-fg ansi-bold">   1883</span>     encoding<span style="color: rgb(98,98,98)">=</span><span style="color: rgb(0,135,0)">self</span><span style="color: rgb(98,98,98)">.</span>options<span style="color: rgb(98,98,98)">.</span>get(<span style="color: rgb(175,0,0)">"</span><span style="color: rgb(175,0,0)">encoding</span><span style="color: rgb(175,0,0)">"</span>, <span class="ansi-bold" style="color: rgb(0,135,0)">None</span>),
+<span class="ansi-green-intense-fg ansi-bold">   1884</span>     compression<span style="color: rgb(98,98,98)">=</span><span style="color: rgb(0,135,0)">self</span><span style="color: rgb(98,98,98)">.</span>options<span style="color: rgb(98,98,98)">.</span>get(<span style="color: rgb(175,0,0)">"</span><span style="color: rgb(175,0,0)">compression</span><span style="color: rgb(175,0,0)">"</span>, <span class="ansi-bold" style="color: rgb(0,135,0)">None</span>),
+<span class="ansi-green-intense-fg ansi-bold">   1885</span>     memory_map<span style="color: rgb(98,98,98)">=</span><span style="color: rgb(0,135,0)">self</span><span style="color: rgb(98,98,98)">.</span>options<span style="color: rgb(98,98,98)">.</span>get(<span style="color: rgb(175,0,0)">"</span><span style="color: rgb(175,0,0)">memory_map</span><span style="color: rgb(175,0,0)">"</span>, <span class="ansi-bold" style="color: rgb(0,135,0)">False</span>),
+<span class="ansi-green-intense-fg ansi-bold">   1886</span>     is_text<span style="color: rgb(98,98,98)">=</span>is_text,
+<span class="ansi-green-intense-fg ansi-bold">   1887</span>     errors<span style="color: rgb(98,98,98)">=</span><span style="color: rgb(0,135,0)">self</span><span style="color: rgb(98,98,98)">.</span>options<span style="color: rgb(98,98,98)">.</span>get(<span style="color: rgb(175,0,0)">"</span><span style="color: rgb(175,0,0)">encoding_errors</span><span style="color: rgb(175,0,0)">"</span>, <span style="color: rgb(175,0,0)">"</span><span style="color: rgb(175,0,0)">strict</span><span style="color: rgb(175,0,0)">"</span>),
+<span class="ansi-green-intense-fg ansi-bold">   1888</span>     storage_options<span style="color: rgb(98,98,98)">=</span><span style="color: rgb(0,135,0)">self</span><span style="color: rgb(98,98,98)">.</span>options<span style="color: rgb(98,98,98)">.</span>get(<span style="color: rgb(175,0,0)">"</span><span style="color: rgb(175,0,0)">storage_options</span><span style="color: rgb(175,0,0)">"</span>, <span class="ansi-bold" style="color: rgb(0,135,0)">None</span>),
+<span class="ansi-green-intense-fg ansi-bold">   1889</span> )
+<span class="ansi-green-intense-fg ansi-bold">   1890</span> <span class="ansi-bold" style="color: rgb(0,135,0)">assert</span> <span style="color: rgb(0,135,0)">self</span><span style="color: rgb(98,98,98)">.</span>handles <span class="ansi-bold" style="color: rgb(175,0,255)">is</span> <span class="ansi-bold" style="color: rgb(175,0,255)">not</span> <span class="ansi-bold" style="color: rgb(0,135,0)">None</span>
+<span class="ansi-green-intense-fg ansi-bold">   1891</span> f <span style="color: rgb(98,98,98)">=</span> <span style="color: rgb(0,135,0)">self</span><span style="color: rgb(98,98,98)">.</span>handles<span style="color: rgb(98,98,98)">.</span>handle
+
+File <span class="ansi-green-fg">/opt/anaconda3/lib/python3.12/site-packages/pandas/io/common.py:873</span>, in <span class="ansi-cyan-fg">get_handle</span><span class="ansi-blue-fg">(path_or_buf, mode, encoding, compression, memory_map, is_text, errors, storage_options)</span>
+<span class="ansi-green-intense-fg ansi-bold">    868</span> <span class="ansi-bold" style="color: rgb(0,135,0)">elif</span> <span style="color: rgb(0,135,0)">isinstance</span>(handle, <span style="color: rgb(0,135,0)">str</span>):
+<span class="ansi-green-intense-fg ansi-bold">    869</span>     <span style="color: rgb(95,135,135)"># Check whether the filename is to be opened in binary mode.</span>
+<span class="ansi-green-intense-fg ansi-bold">    870</span>     <span style="color: rgb(95,135,135)"># Binary mode does not support 'encoding' and 'newline'.</span>
+<span class="ansi-green-intense-fg ansi-bold">    871</span>     <span class="ansi-bold" style="color: rgb(0,135,0)">if</span> ioargs<span style="color: rgb(98,98,98)">.</span>encoding <span class="ansi-bold" style="color: rgb(175,0,255)">and</span> <span style="color: rgb(175,0,0)">"</span><span style="color: rgb(175,0,0)">b</span><span style="color: rgb(175,0,0)">"</span> <span class="ansi-bold" style="color: rgb(175,0,255)">not</span> <span class="ansi-bold" style="color: rgb(175,0,255)">in</span> ioargs<span style="color: rgb(98,98,98)">.</span>mode:
+<span class="ansi-green-intense-fg ansi-bold">    872</span>         <span style="color: rgb(95,135,135)"># Encoding</span>
+<span class="ansi-green-fg">--&gt; 873</span>         handle <span style="color: rgb(98,98,98)">=</span> <span style="color: rgb(0,135,0)">open</span>(
+<span class="ansi-green-intense-fg ansi-bold">    874</span>             handle,
+<span class="ansi-green-intense-fg ansi-bold">    875</span>             ioargs<span style="color: rgb(98,98,98)">.</span>mode,
+<span class="ansi-green-intense-fg ansi-bold">    876</span>             encoding<span style="color: rgb(98,98,98)">=</span>ioargs<span style="color: rgb(98,98,98)">.</span>encoding,
+<span class="ansi-green-intense-fg ansi-bold">    877</span>             errors<span style="color: rgb(98,98,98)">=</span>errors,
+<span class="ansi-green-intense-fg ansi-bold">    878</span>             newline<span style="color: rgb(98,98,98)">=</span><span style="color: rgb(175,0,0)">"</span><span style="color: rgb(175,0,0)">"</span>,
+<span class="ansi-green-intense-fg ansi-bold">    879</span>         )
+<span class="ansi-green-intense-fg ansi-bold">    880</span>     <span class="ansi-bold" style="color: rgb(0,135,0)">else</span>:
+<span class="ansi-green-intense-fg ansi-bold">    881</span>         <span style="color: rgb(95,135,135)"># Binary mode</span>
+<span class="ansi-green-intense-fg ansi-bold">    882</span>         handle <span style="color: rgb(98,98,98)">=</span> <span style="color: rgb(0,135,0)">open</span>(handle, ioargs<span style="color: rgb(98,98,98)">.</span>mode)
+
+<span class="ansi-red-fg">FileNotFoundError</span>: [Errno 2] No such file or directory: '../data/original/consumer06csv.csv'</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=8f80b3d2-1d26-4d1d-aef8-b5839d90219f">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p>Next, in order to make the dataframe a bit more readable for Python, I used the command '.long' to transform the dataframe into a "long" format as opposed to a "wide" one; meaning each item for each year is given its own row, as oppposed to four columns of years by the amount of items. Somehow this also removed the rows with no value, which was a wonderful bonus. Then I began exploring the data and looking for trends, as well as using Claude to help me examine individual items or specific areas.</p>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=4c9e615d-99ba-428a-9035-3ede18b398bb">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [12]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># Read the CSV file</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">'combined_consumer_spending_2006_2020.csv'</span><span class="p">)</span>
+
+<span class="c1"># Clean up the data first by removing rows that contain summaries or non-spending categories</span>
+<span class="c1"># We'll keep only the main spending categories</span>
+<span class="n">main_categories</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s1">'Average Annual Expenditures'</span><span class="p">,</span> <span class="s1">'Food'</span><span class="p">,</span> <span class="s1">'Alcoholic beverages'</span><span class="p">,</span> <span class="s1">'Housing'</span><span class="p">,</span> 
+    <span class="s1">'Apparel and services'</span><span class="p">,</span> <span class="s1">'Transportation'</span><span class="p">,</span> <span class="s1">'Healthcare'</span><span class="p">,</span> <span class="s1">'Entertainment'</span><span class="p">,</span>
+    <span class="s1">'Personal care products and services'</span><span class="p">,</span> <span class="s1">'Reading'</span><span class="p">,</span> <span class="s1">'Education'</span><span class="p">,</span> 
+    <span class="s1">'Tobacco products and smoking supplies'</span><span class="p">,</span> <span class="s1">'Miscellaneous'</span><span class="p">,</span>
+    <span class="s1">'Cash contributions'</span><span class="p">,</span> <span class="s1">'Personal insurance and pensions'</span>
+<span class="p">]</span>
+
+<span class="c1"># Filter the dataframe to keep only the main spending categories</span>
+<span class="n">df_clean</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">'Item'</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">main_categories</span><span class="p">)]</span>
+
+<span class="c1"># Now melt the dataframe to convert from wide to long format</span>
+<span class="n">df_long</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">melt</span><span class="p">(</span>
+    <span class="n">df_clean</span><span class="p">,</span>
+    <span class="n">id_vars</span><span class="o">=</span><span class="p">[</span><span class="s1">'Item'</span><span class="p">],</span>  <span class="c1"># Keep 'Item' as an identifier</span>
+    <span class="n">value_vars</span><span class="o">=</span><span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">year</span><span class="p">)</span> <span class="k">for</span> <span class="n">year</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2006</span><span class="p">,</span> <span class="mi">2021</span><span class="p">)],</span>  <span class="c1"># Years 2006-2020 as variables</span>
+    <span class="n">var_name</span><span class="o">=</span><span class="s1">'Year'</span><span class="p">,</span>  <span class="c1"># Name for the new column containing years</span>
+    <span class="n">value_name</span><span class="o">=</span><span class="s1">'Spending'</span>  <span class="c1"># Name for the new column containing spending values</span>
+<span class="p">)</span>
+
+<span class="c1"># Convert Year to integer and Spending to float</span>
+<span class="n">df_long</span><span class="p">[</span><span class="s1">'Year'</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_long</span><span class="p">[</span><span class="s1">'Year'</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+<span class="n">df_long</span><span class="p">[</span><span class="s1">'Spending'</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_numeric</span><span class="p">(</span><span class="n">df_long</span><span class="p">[</span><span class="s1">'Spending'</span><span class="p">],</span> <span class="n">errors</span><span class="o">=</span><span class="s1">'coerce'</span><span class="p">)</span>
+
+<span class="c1"># Display the first few rows of the transformed data</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df_long</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">))</span>
+
+<span class="c1"># Save the transformed data to a new CSV file</span>
+<span class="n">df_long</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">'consumer_spending_long_format.csv'</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr" tabindex="0">
+<pre>
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
+Cell <span class="ansi-green-fg">In[12], line 2</span>
+<span class="ansi-green-intense-fg ansi-bold">      1</span> <span style="color: rgb(95,135,135)"># Read the CSV file</span>
+<span class="ansi-green-fg">----&gt; 2</span> df <span style="color: rgb(98,98,98)">=</span> pd<span style="color: rgb(98,98,98)">.</span>read_csv(<span style="color: rgb(175,0,0)">'</span><span style="color: rgb(175,0,0)">combined_consumer_spending_2006_2020.csv</span><span style="color: rgb(175,0,0)">'</span>)
+<span class="ansi-green-intense-fg ansi-bold">      4</span> <span style="color: rgb(95,135,135)"># Clean up the data first by removing rows that contain summaries or non-spending categories</span>
+<span class="ansi-green-intense-fg ansi-bold">      5</span> <span style="color: rgb(95,135,135)"># We'll keep only the main spending categories</span>
+<span class="ansi-green-intense-fg ansi-bold">      6</span> main_categories <span style="color: rgb(98,98,98)">=</span> [
+<span class="ansi-green-intense-fg ansi-bold">      7</span>     <span style="color: rgb(175,0,0)">'</span><span style="color: rgb(175,0,0)">Average Annual Expenditures</span><span style="color: rgb(175,0,0)">'</span>, <span style="color: rgb(175,0,0)">'</span><span style="color: rgb(175,0,0)">Food</span><span style="color: rgb(175,0,0)">'</span>, <span style="color: rgb(175,0,0)">'</span><span style="color: rgb(175,0,0)">Alcoholic beverages</span><span style="color: rgb(175,0,0)">'</span>, <span style="color: rgb(175,0,0)">'</span><span style="color: rgb(175,0,0)">Housing</span><span style="color: rgb(175,0,0)">'</span>, 
+<span class="ansi-green-intense-fg ansi-bold">      8</span>     <span style="color: rgb(175,0,0)">'</span><span style="color: rgb(175,0,0)">Apparel and services</span><span style="color: rgb(175,0,0)">'</span>, <span style="color: rgb(175,0,0)">'</span><span style="color: rgb(175,0,0)">Transportation</span><span style="color: rgb(175,0,0)">'</span>, <span style="color: rgb(175,0,0)">'</span><span style="color: rgb(175,0,0)">Healthcare</span><span style="color: rgb(175,0,0)">'</span>, <span style="color: rgb(175,0,0)">'</span><span style="color: rgb(175,0,0)">Entertainment</span><span style="color: rgb(175,0,0)">'</span>,
+<span class="ansi-green-fg">   (...)</span>
+<span class="ansi-green-intense-fg ansi-bold">     11</span>     <span style="color: rgb(175,0,0)">'</span><span style="color: rgb(175,0,0)">Cash contributions</span><span style="color: rgb(175,0,0)">'</span>, <span style="color: rgb(175,0,0)">'</span><span style="color: rgb(175,0,0)">Personal insurance and pensions</span><span style="color: rgb(175,0,0)">'</span>
+<span class="ansi-green-intense-fg ansi-bold">     12</span> ]
+
+<span class="ansi-red-fg">NameError</span>: name 'pd' is not defined</pre>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=2378a915-6e05-4409-8026-ac580f3a329d">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span> 
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=477384d4-0c58-478c-a65d-5255fef9a932">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p>From here I explored the data frames and looked for patterns that might be worth charting. One such thing that stood out was the Percent Change in spending for each category from the beginning to the end of the data set.</p>
+<div align="center">
+<img alt="Python view" src="../assets/img/percentchangeraw.png" style="border: 2px solid" width="60%"/>
+<figcaption style="font-style: italic">
+    Sampling daga.
+  </figcaption>
+</div>
+I also noticed trends in the major categories that were worth plotting, and brainstormed ways to bring in non-spending information as well.
+
 </div>
 </div>
 </div>
@@ -7599,15 +7957,15 @@ a.anchor-link {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h3 id="Main-Analysis">Main Analysis<a class="anchor-link" href="#Main-Analysis">¶</a></h3><p>To begin with, there is some interesting information not contained in the datasets I created. Luckily the kind of information it is does not require in-depth processing to understand. Over all 14 years, the biggest gap between the male-female ration was 46:54 in 2006. In the following years it stayed at 47:53 into and through the 2010s with a few 48:52 seemingly at random. The distribution by race is much less balanced; almost all of the years on record here the White population representing around 87% of the reference group, with black or latino only being about 13%.</p>
-<p>Another extremely relevant statistic recorded in these documents was the percentage of homeowners surveyed who had a mortgage. The housing crisis of 2007-2008 was due to the "bursting" of the "housing bubble", essentially meaning that housing prices rose steeply and quickly which led to many more people missing payments, which in turn hurt the housing market and caused prices to plummet. Because of this, there was supposedly less desire or need for mortages. Indeed, we can see this reflected in a chart of the percentages of homeowners and renters:</p>
+<h3 id="Main-Analysis">Main Analysis<a class="anchor-link" href="#Main-Analysis">¶</a></h3><p>To begin with, there is some interesting information not contained in the graphs I created. Luckily the kind of information it is does not require in-depth processing to understand. Over all 14 years, the biggest gap between the male-female response ratio was 46:54 in 2006. In the following years it stayed at 47:53 into and through the 2010s with a few 48:52 seemingly at random. This means that generally there was a well-balanced representation of gender in the households. The distribution by race is much less balanced; almost all of the years on record here the White population representing around 87% of the reference group, with black or latino only being about 13%.</p>
+<p>An extremely relevant statistic recorded in these documents was the percentage of homeowners surveyed who had a mortgage. The housing crisis of 2007-2008 was due to the bursting"\ of the "housing bubble", essentially meaning that housing prices rose steeply and quickly which led to many more people missing payments, which in turn hurt the housing market and caused prices to plummet. Because of this, there was supposedly less desire or need for mortages. Indeed, we can see this reflected in a chart of the percentages of homeowners and renters:</p>
 <div align="center">
 <img alt="Homeowner Trends" src="../assets/img/homeowners_trends.png" style="border: 2px solid" width="60%"/>
 <figcaption style="font-style: italic">
     Percent of Homeowners with mortage, without mortage, or renting by Year
   </figcaption>
 </div>
-Not only does the amount of homeowners paying a mortage go down, but renters actually overtake the homeowners with mortgages in 2015. Another really interesting bit of information is that the percent of people who had completed college rose steadily from 59% in 2006 to 69% in 2020.
+Not only does the amount of homeowners paying a mortage go down, but renters actually overtake the homeowners with mortgages in 2015. This is something that has actually reversed in recent years; according to a study published by census.gov at the end of 2024, nearly all of the counties surveyed in the U.S had more homeowners than renters. It is clear that the turbulent housing market and lower credit limits affected how people viewed their possiblities for housing.
 <p>As for the actual expenditures, I made a few broad charts showing the items with the most budget share and the percent increase or decrease each year.</p>
 <div align="center">
 <img alt="Top categories" src="../assets/img/categories-budgetshare.png" style="border: 2px solid" width="60%"/>
@@ -7615,14 +7973,14 @@ Not only does the amount of homeowners paying a mortage go down, but renters act
     The categories with the largest budget share.
   </figcaption>
 </div>
-<p>This shows very clearly that, although the housing market took a hit after 2008, housing prices quickly began to climb again, and now we are spending more than ever before on housing. The other four categories Transportation, Apparel, Insurance, and Healthcare also show a gradual rise over the years, aside from minor dips in 2009-2010 and 2019-2020 in the Transportation and Apparel categories.</p>
+<p>This shows very clearly that, although the housing market took a hit after 2008, housing prices quickly began to climb again, and now we are spending more than ever before on housing. The other four categories Transportation, Apparel, Insurance, and Healthcare also show a gradual rise over the years, aside from minor dips in 2009-2010 and 2019-2020 in the Transportation and Apparel categories. According to multiple sources, the average rate of inflation over the last 30 years has been a little over 2% annually.</p>
 <div align="center">
 <img alt="% Change in budget share" src="../assets/img/percent-change.png" style="border: 2px solid" width="60%"/>
 <figcaption style="font-style: italic">
     The change in the percent of total budget share for top 5 categories.
   </figcaption>
 </div>
-<p>This shows the actual percent change by year for the main 6 categories. With this chart it is easier to see that people began spending about 18% less on alcohol following the Great Recession, while they actually spent about 18% <em>more</em> on tobacco. It is also interesting to note the rapid increase in cost of education.</p>
+<p>This shows the actual percent change by year for the main 6 categories. With this chart it is easier to see that people began spending about 18% less on alcohol following the Great Recession, while they actually spent about 18% <em>more</em> on tobacco. It is also interesting to note the rapid increase in cost of education. educationdata.org has statistics demonstrating that the inflation of college tuition rose an average of 3.6% annually from 2009-2020. According to the BLS' original data sheet, the percent of people who had completed college rose steadily from 59% in 2006 to 69% in 2020. So, not only were more people going to college, but it was also getting more and more expensive each year.</p>
 <p>Here are the two highest value categories comapred to each other:</p>
 <div align="center">
 <img alt="Main Spendingh" src="../assets/img/high-value.png" style="border: 2px solid" width="60%"/>
@@ -7637,6 +7995,7 @@ Not only does the amount of homeowners paying a mortage go down, but renters act
     Other Spending.
   </figcaption>
 </div>
+<p>Besides showing the disparity between the higher and lower categories, this also allows us to see how housing continues to grow in budget share while other categories stagnate or decline through the 2010s. If housing was only growing in accordance with national inflation, we would expect the rest of the categories to follow a similar trend. This shows that expenditures on housing are growing out of proportion to the rest of our spending.</p>
 <p>The BLS also has data on employment information from this same time period. Looking at the columns for the change between 2007 and 2010, the Federal Government was the only sector to increase in employment, while all others lost between 1% and 28% of the workforce.</p>
 <div align="center">
 <img alt="BLS Employment Statistics" src="../assets/img/blsemployment07.png" style="border: 2px solid" width="60%"/>
@@ -7651,7 +8010,7 @@ Not only does the amount of homeowners paying a mortage go down, but renters act
     Average savings of St. Louis residents.
   </figcaption>
 </div>
-<p>With this data we can understand a little more about the economic rebound in the later 2010s. It seems clear that as the workforce began to grow again from 2012-2020, people were able to put more of their money into savings. Looking back at our Percent Change graph, we also see that people have started spending less generally on everything except housing.</p>
+<p>With this data we can understand a little more about the economic rebound in the later 2010s. It seems clear that as the workforce began to grow again from 2012-2020, people were able to put more of their money into savings. Looking back at our Percent Change graph, we also see that people have started spending less generally on everything except housing. As education cost continues to rise, it is likely we will see a similar drop in college spending until the price reaches a level attainable for the average American.</p>
 </div>
 </div>
 </div>
@@ -7675,14 +8034,18 @@ Not only does the amount of homeowners paying a mortage go down, but renters act
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="Repository-and-Bibliography">Repository and Bibliography<a class="anchor-link" href="#Repository-and-Bibliography">¶</a></h2><h3 id="Github-Repository">Github Repository<a class="anchor-link" href="#Github-Repository">¶</a></h3><p><strong><a href="https://github.com/bwarzel/research-project">Here</a></strong></p>
-<h3 id="Bibliography">Bibliography<a class="anchor-link" href="#Bibliography">¶</a></h3><p>Original Main Data Set: <a href="https://www.bls.gov/opub/mlr/2014/article/consumer-spending-and-us-employment-from-the-recession-through-2022.htm">https://www.bls.gov/opub/mlr/2014/article/consumer-spending-and-us-employment-from-the-recession-through-2022.htm</a>
-Employment Statistics: <a href="https://www.bls.gov/opub/mlr/2014/article/consumer-spending-and-us-employment-from-the-recession-through-2022.htm">https://www.bls.gov/opub/mlr/2014/article/consumer-spending-and-us-employment-from-the-recession-through-2022.htm</a>
-St. Louis Savings: <a href="https://fred.stlouisfed.org/series/W398RC1A027NBEA">https://fred.stlouisfed.org/series/W398RC1A027NBEA</a></p>
+<h2 id="Repository-and-Bibliography">Repository and Bibliography<a class="anchor-link" href="#Repository-and-Bibliography">¶</a></h2><h3 id="Github-Repository">Github Repository<a class="anchor-link" href="#Github-Repository">¶</a></h3><p><strong><a href="https://github.com/bwarzel/research-project">Full repository for research project</a></strong></p>
+<h3 id="Bibliography">Bibliography<a class="anchor-link" href="#Bibliography">¶</a></h3><p>Original Main Data Set: <a href="https://www.bls.gov/opub/mlr/2014/article/consumer-spending-and-us-employment-from-the-recession-through-2022.htm">https://www.bls.gov/opub/mlr/2014/article/consumer-spending-and-us-employment-from-the-recession-through-2022.htm</a></p>
+<p>Employment Statistics: <a href="https://www.bls.gov/opub/mlr/2014/article/consumer-spending-and-us-employment-from-the-recession-through-2022.htm">https://www.bls.gov/opub/mlr/2014/article/consumer-spending-and-us-employment-from-the-recession-through-2022.htm</a></p>
+<p>St. Louis Savings: <a href="https://fred.stlouisfed.org/series/W398RC1A027NBEA">https://fred.stlouisfed.org/series/W398RC1A027NBEA</a></p>
+<p>2008 Consumer Spending Internal Report <a href="https://www.imf.org/external/pubs/ft/spn/2010/spn1001.pdf">https://www.imf.org/external/pubs/ft/spn/2010/spn1001.pdf</a></p>
+<p>Homeowner census <a href="https://www.census.gov/newsroom/press-releases/2024/acs-5-year-homeowners-renters.html">https://www.census.gov/newsroom/press-releases/2024/acs-5-year-homeowners-renters.html</a></p>
+<p>U.S Inflation <a href="https://www.usinflationcalculator.com/inflation/current-inflation-rates/#google_vignette">https://www.usinflationcalculator.com/inflation/current-inflation-rates/#google_vignette</a></p>
+<p>College tuition inflation <a href="https://educationdata.org/college-tuition-inflation-rate">https://educationdata.org/college-tuition-inflation-rate</a></p>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=6e30db80-eed6-446e-8c93-4c42983c583d">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=9a3b83ee-1982-4ec1-9111-72c8e8522a3b">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
